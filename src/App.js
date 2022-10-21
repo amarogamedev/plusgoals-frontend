@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { Navbar, Container, Nav } from 'react-bootstrap';
+import { BsFillBookmarkPlusFill, BsFillPersonFill, BsFillGearFill } from 'react-icons/bs';
+
+import Goals from './components/goals';
+
+class App extends React.Component {
+
+  render() {
+    return (
+      <div>
+        <Navbar bg="primary" expand="lg" variant="dark">
+          <Container>
+            <Navbar.Brand>
+              <BsFillBookmarkPlusFill />&nbsp;&nbsp;PlusGoals
+            </Navbar.Brand>
+            <Nav className="justify-content-end flex-grow-1 pe-3">
+              <Nav.Link href="#action1"><BsFillPersonFill />&nbsp;&nbsp;Account</Nav.Link>
+              <Nav.Link href="#action2"><BsFillGearFill />&nbsp;&nbsp;Settings</Nav.Link>
+            </Nav>
+          </Container>
+        </Navbar>
+        <br />
+        <Goals />
+      </div>
+    )
+  }
 }
 
 export default App;

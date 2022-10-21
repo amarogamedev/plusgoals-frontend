@@ -1,0 +1,22 @@
+body {
+    background-color: #cfe9e2;
+}
+
+.accordion {
+    margin-bottom: 0.5rem;
+}
+
+.accordion-button {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.form-control {
+    border: 1px solid #edeff1;
+}
+
+.form-check-input {
+    margin-top: 0;
+}
