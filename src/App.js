@@ -3,7 +3,8 @@ import React from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { BsFillBookmarkPlusFill, BsFillPersonFill, BsFillGearFill } from 'react-icons/bs';
 
-import Goals from './components/goals';
+import GoalList from './components/goallist';
+import TaskList from './components/tasklist';
 
 class App extends React.Component {
 
@@ -22,7 +23,7 @@ class App extends React.Component {
           </Container>
         </Navbar>
         <br />
-        <Goals />
+        <GoalList />
       </div>
     )
   }

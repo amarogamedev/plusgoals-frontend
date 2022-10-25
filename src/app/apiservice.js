@@ -10,7 +10,6 @@ class ApiService {
     }
 
     post(url, data) {
-        console.log(JSON.stringify(data))
         const requestUrl = `${this.apiurl}${url}`
         return axiosInstance.post(`${requestUrl}`, data);
     }

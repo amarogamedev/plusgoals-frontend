@@ -1,8 +1,8 @@
 import ApiService from "../apiservice";
 
-export default class GoalService extends ApiService {
+export default class TaskService extends ApiService {
     constructor() {
-        super('/goals')
+        super('/tasks')
     }
 
     findAll() {
@@ -13,19 +13,15 @@ export default class GoalService extends ApiService {
         return this.get(`/${id}`)
     }
 
-    findAllTasks(id) {
-        return this.get(`/${id}/tasks`)
-    }
-
-    createGoal(data) {
+    createTask(data) {
         return this.post(``, data)
     }
 
-    updateGoal(id, data) {
+    updateTask(id, data) {
         return this.put(`/${id}`, data)
     }
 
-    deleteGoal(id) {
+    deleteTask(id) {
         return this.delete(`/${id}`)
     }
 }
