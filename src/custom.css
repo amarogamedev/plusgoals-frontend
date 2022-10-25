@@ -45,3 +45,8 @@ body {
     --bs-btn-disabled-border-color: #f8f9fa;
     --bs-gradient: none;
 }
+
+.progress {
+    border: 1px solid #edeff1;
+    --bs-progress-bg: #ffffff;
+}

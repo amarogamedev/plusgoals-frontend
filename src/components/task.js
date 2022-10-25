@@ -30,11 +30,12 @@ export default class Task extends React.Component {
                     text: this.state.text,
                     done: this.state.done
                 }).then((response) => {
-
+                    this.state.taskList.state.goal.refreshTaskList();
                 }).catch((error) => {
                     console.log(error.response.data);
                 });
         });
+
     }
 
     changeName = (event) => {

@@ -6,6 +6,9 @@ import { BsFillBookmarkPlusFill, BsFillPersonFill, BsFillGearFill } from 'react-
 import GoalList from './components/goallist';
 import TaskList from './components/tasklist';
 
+//<Nav.Link href="#action1"><BsFillPersonFill />&nbsp;&nbsp;Account</Nav.Link>
+//<Nav.Link href="#action2"><BsFillGearFill />&nbsp;&nbsp;Settings</Nav.Link>
+
 class App extends React.Component {
 
   render() {
@@ -17,8 +20,7 @@ class App extends React.Component {
               <BsFillBookmarkPlusFill />&nbsp;&nbsp;PlusGoals
             </Navbar.Brand>
             <Nav className="justify-content-end flex-grow-1 pe-3">
-              <Nav.Link href="#action1"><BsFillPersonFill />&nbsp;&nbsp;Account</Nav.Link>
-              <Nav.Link href="#action2"><BsFillGearFill />&nbsp;&nbsp;Settings</Nav.Link>
+              
             </Nav>
           </Container>
         </Navbar>
