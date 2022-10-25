@@ -13,19 +13,20 @@ export default class Goal extends React.Component {
         text: '',
         done: false,
         id: '',
-        taskIds: []
+        goalList: null,
+        taskList: []
     }
 
     constructor(props) {
         super(props);
         this.service = new GoalService();
-        this.list = this.props.list;
         this.state = {
             text: this.props.text,
             done: this.props.done,
             id: this.props.id,
-            taskIds: this.props.taskIds
+            goalList: this.props.goalList,
         }
+        this.refreshTaskList();
     }
 
     markDone = () => {
@@ -35,7 +36,7 @@ export default class Goal extends React.Component {
                     text: this.state.text,
                     done: this.state.done
                 }).then((response) => {
-
+                    this.refreshTaskList();
                 }).catch((error) => {
                     console.log(error.response.data);
                 });
@@ -59,10 +60,29 @@ export default class Goal extends React.Component {
     delete = () => {
         this.service.deleteGoal
             (this.state.id).then((response) => {
-                this.list.updateList();
+                this.state.goalList.refreshGoalList();
             }).catch((error) => {
                 console.log(error.response.data);
             });
+    }
+
+    refreshTaskList = () => {
+        this.service.findAllTasksByGoalId(this.state.id)
+            .then(response => {
+                const list = response.data;
+                this.setState({ taskList: null }, () => {
+                    this.setState({ taskList: list })
+                })
+            }).catch(error => {
+                console.log(error.response.data)
+            })
+    }
+
+    updatedTaskList() {
+        if(this.state.taskList) {
+            return <TaskList taskList={this.state.taskList} goalId={this.state.id} goal={this}/>
+        }
+        return <></>
     }
 
     render() {
@@ -72,7 +92,7 @@ export default class Goal extends React.Component {
                     <Accordion.Button as="div">
                         <div className="container d-flex align-items-center">
                             <input className="form-check-input" type="checkbox" checked={this.state.done} onChange={this.markDone} onClick={e => { e.stopPropagation(); }} />
-                            <input className="form-control mx-2" value={this.state.text} onChange={this.changeName} placeholder="New goal" onClick={e => { e.stopPropagation(); }} />
+                            <input className="form-control mx-2 ms-3" value={this.state.text} onChange={this.changeName} placeholder="New goal" onClick={e => { e.stopPropagation(); }} />
                             <ModalController title="Confirm deletion?"
                                 icon={<BsTrash />}
                                 description="This action cannot be reversed, are you sure you want to delete this goal and it's tasks?"
@@ -81,7 +101,7 @@ export default class Goal extends React.Component {
                         </div>
                     </Accordion.Button>
                     <Accordion.Body>
-                        <TaskList id={this.state.id} />
+                        {this.updatedTaskList()}
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>

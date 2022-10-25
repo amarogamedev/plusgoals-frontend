@@ -1,24 +1,25 @@
 import React from "react";
 import { BsTrash } from "react-icons/bs"
-import TaskService from "../app/service/taskservice";
 import ModalController from "./custommodal";
+import GoalService from "../app/service/goalservice";
 
 export default class Task extends React.Component {
 
     state = {
         text: '',
         done: false,
-        id: ''
+        id: '',
+        taskList: null
     }
 
     constructor(props) {
         super(props);
-        this.service = new TaskService();
-        this.list = this.props.list;
+        this.service = new GoalService();
         this.state = {
             text: this.props.text,
             done: this.props.done,
-            id: this.props.id
+            id: this.props.id,
+            taskList: this.props.list
         }
     }
 
@@ -53,7 +54,7 @@ export default class Task extends React.Component {
     delete = () => {
         this.service.deleteTask
             (this.state.id).then((response) => {
-                this.list.updateList();
+                this.state.taskList.state.goal.refreshTaskList();
             }).catch((error) => {
                 console.log(error.response.data);
             });
@@ -63,7 +64,7 @@ export default class Task extends React.Component {
         return (
             <div className="container d-flex align-items-center mb-2">
                 <input className="form-check-input" type="checkbox" checked={this.state.done} onChange={this.markDone} onClick={e => { e.stopPropagation(); }} />
-                <input className="form-control mx-2" value={this.state.text} onChange={this.changeName} placeholder="New task" onClick={e => { e.stopPropagation(); }} />
+                <input className="form-control mx-2 ms-3" value={this.state.text} onChange={this.changeName} placeholder="New task" onClick={e => { e.stopPropagation(); }} />
                 <ModalController title="Confirm deletion?"
                     icon={<BsTrash />}
                     description="This action cannot be reversed, are you sure you want to delete this task?"

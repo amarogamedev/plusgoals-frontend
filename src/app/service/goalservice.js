@@ -1,31 +1,52 @@
 import ApiService from "../apiservice";
 
 export default class GoalService extends ApiService {
+
     constructor() {
-        super('/goals')
+        super(`/`);
     }
 
     findAll() {
-        return this.get(``)
+        return this.get(`goals`)
     }
 
     findById(id) {
-        return this.get(`/${id}`)
+        return this.get(`goals/${id}`)
     }
 
-    findAllTasks(id) {
-        return this.get(`/${id}/tasks`)
+    findAllTasksByGoalId(id) {
+        return this.get(`goals/${id}/tasks`)
     }
 
     createGoal(data) {
-        return this.post(``, data)
+        return this.post(`goals`, data)
     }
 
     updateGoal(id, data) {
-        return this.put(`/${id}`, data)
+        return this.put(`goals/${id}`, data)
     }
 
     deleteGoal(id) {
-        return this.delete(`/${id}`)
+        return this.delete(`goals/${id}`)
+    }
+    
+    findAllTasks() {
+        return this.get(`tasks`)
+    }
+
+    findTaskById(id) {
+        return this.get(`tasks/${id}`)
+    }
+
+    createTask(data) {
+        return this.post(`tasks`, data)
+    }
+
+    updateTask(id, data) {
+        return this.put(`tasks/${id}`, data)
+    }
+
+    deleteTask(id) {
+        return this.delete(`tasks/${id}`)
     }
 }

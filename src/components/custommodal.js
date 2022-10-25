@@ -5,7 +5,7 @@ export default function ModalController(props) {
     const [modalShow, setModalShow] = React.useState(false);
     return (
         <>
-            <Button variant="outline-primary" onClick={e => { e.stopPropagation(); setModalShow(true); }}>
+            <Button variant="outline-light" onClick={e => { e.stopPropagation(); setModalShow(true); }}>
                 {props.icon}
             </Button>
             <CustomModal show={modalShow}
